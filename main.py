@@ -1,80 +1,65 @@
 import random
-# library that we use in order to choose
+
+# library thatwe use in order to choose
 # on random words from a list of words
  
 #name = input("What is your name? ")
  
 # Here the user is asked to enter the name first
  
-#print("Good Luck ! ", name)
+import pygame
+background_colour = (255,255,255)
+X = 600
+Y = 400
  
-words = ['rainbow', 'computer', 'science', 'programming',
-         'python', 'mathematics', 'player', 'condition',
-         'reverse', 'water', 'board', 'geeks']
- 
-# Function will choose one random
-# word from this list of words
-word = random.choice(words)
- 
- 
-print("Guess the characters")
- 
-guesses = ''
- 
-# any number of turns can be used here
-turns = 12
- 
- 
-while turns > 0:
- 
-    # counts the number of times a user fails
-    failed = 0
- 
-    # all characters from the input
-    # word taking one at a time.
-    for char in word:
- 
-        # comparing that character with
-        # the character in guesses
-        if char in guesses:
-            print(char, end=" ")
- 
-        else:
-            print("_")
- 
-            # for every failure 1 will be
-            # incremented in failure
-            failed += 1
- 
-    if failed == 0:
-        # user will win the game if failure is 0
-        # and 'You Win' will be given as output
-        print("You Win")
- 
-        # this print the correct word
-        print("The word is: ", word)
-        break
- 
-    # if user has input the wrong alphabet then
-    # it will ask user to enter another alphabet
-    print()
-    guess = input("guess a character:")
- 
-    # every input character will be stored in guesses
-    guesses += guess
- 
-    # check input with the character in word
-    if guess not in word:
- 
-        turns -= 1
- 
-        # if the character doesn’t match the word
-        # then “Wrong” will be given as output
-        print("Wrong")
- 
-        # this will print the number of
-        # turns left for the user
-        print("You have", + turns, 'more guesses')
- 
-        if turns == 0:
-            print("You Loose")
+screen = pygame.display.set_mode((X, Y))
+pygame.display.set_caption('Tutorial 1')
+screen.fill(background_colour)
+pygame.display.flip()
+
+  
+# Initialing Color
+color = (255,0,0)
+  
+# Drawing Rectangle #(x,y, length, width)
+#flag_box = pygame.draw.rect(screen, color, pygame.Rect(200, 140, 200, 110))
+#flag_box.center = (X // 2, Y // 2)
+pygame.display.flip()
+
+#grab elements from the pygame interface
+#infoObject = pygame.display.Info()
+
+#create the display surface to grab the size of the pygame screen
+#display_surface = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+
+
+
+canada = pygame.image.load("canadaflag.png")
+united_states = pygame.image.load("usaflag.png")
+argentina = pygame.image.load("argentinaflag.png")
+
+flag_list = [canada, united_states, argentina]
+
+flag_choice = flag_list.pop(random.randint(0,len(flag_list)-1))
+#image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
+
+image = pygame.transform.scale(flag_choice, (200, 100))
+rect = image.get_rect()
+
+rect = rect.move((200, 110))
+screen.blit(image, rect)
+
+
+if flag_choice == canada:
+  word = "canada"
+  print(word)
+elif flag_choice == united_states:
+  word = "united_states"
+  print(word)
+elif flag_choice == argentina:
+  word = "argentina"
+  print(word)
+
+#display_surface.blit(image, (0, 0)) 
+
+pygame.display.update()
