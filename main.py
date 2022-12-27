@@ -9,7 +9,6 @@ def play():
     textRect = text.get_rect()
     textRect.center = (X // width, Y // length)
     screen.blit(text, textRect)
-
     
   pygame.init()
   white = (255, 255, 255)
@@ -26,6 +25,8 @@ def play():
   pygame.display.set_caption('guess the flag!')
       
   point = 0
+  lives = 5
+  
   guess = "click space to edit text..."
   pygame.init()
   font = pygame.font.Font(None, 50)
@@ -51,7 +52,7 @@ def play():
     pygame.display.update()
     
     guessing = True
-    while guessing:
+    while guessing and lives > 0:
       for evt in pygame.event.get():
           if evt.type == KEYDOWN:
             if evt.unicode.isalpha():
@@ -66,21 +67,24 @@ def play():
                   guess = "click space to edit text..."
                   guessing = False
                 else:
-                  guessing = True
+                  lives -= 1
+
+      if lives == 0:
+        print("loser")
+        pygame.quit()
+
       screen.fill((background_colour))
       rect = image.get_rect()
       rect = rect.move((200, 110))
       textbox("Name The Flag", 2, 6, gray)
       textbox("score: "+str(point), 8, 14, gray)
+      textbox("lives: "+str(lives), 1.15, 14, gray)
       screen.blit(image, rect,)
       underline = pygame.draw.rect(screen, gray, pygame.Rect(150, 300, 300, 10))
       text = font.render(guess, True, (1, 1, 1))
       text_rect = text.get_rect()
       text_rect.center = (X // 2, Y // 1.45) 
-      screen.blit(text, text_rect)
-      
+      screen.blit(text, text_rect)    
       pygame.display.flip()
-
-    
 
 play()
