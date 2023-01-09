@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import random
 import sqlite3
+#notes: add function for adding flags maybe?, add incorrect image, add the correct answer if they lose 
 
 def Select (cursor, query, args=()):
  cursor.execute(query, args)
@@ -62,10 +63,7 @@ def instruction():
 
 
   smallfont = pygame.font.SysFont('Corbel',35) 
-    
-  # rendering a text written in 
-  # this font 
-
+  
   exit_button = smallfont.render('X' , True , gray)
 
     
@@ -187,7 +185,7 @@ def play():
     color_dark = (100,100,100) 
     
     screen = pygame.display.set_mode((X, Y))
-    pygame.display.set_caption('ending')
+    pygame.display.set_caption('game over')
     screen.fill(background_colour)
     pygame.display.flip()
     ending_bg = pygame.image.load("ending.png")
@@ -270,9 +268,16 @@ def play():
   flag_generator = True
   while flag_generator:
     canada = pygame.image.load("canadaflag.png")
-    united_states = pygame.image.load("usaflag.png")
+    brazil = pygame.image.load("brazil.png")
     argentina = pygame.image.load("argentinaflag.png")
-    flag_list = [canada, united_states, argentina]
+    colombia = pygame.image.load("colombia.png")
+    malaysia = pygame.image.load("malaysia.png")
+    pakistan = pygame.image.load("pakistan.png")
+    ecuador = pygame.image.load("ecuador.png")
+    cuba = pygame.image.load("cuba.png")
+    mexico = pygame.image.load("mexico.png")
+    spain = pygame.image.load("spain.png")
+    flag_list = [canada, brazil, argentina, colombia, malaysia, pakistan, ecuador, cuba, mexico, spain]
     
     flag_choice = flag_list.pop(random.randint(0,len(flag_list)-1))
     
@@ -280,10 +285,25 @@ def play():
     
     if flag_choice == canada:
       word = "canada"
-    elif flag_choice == united_states:
-      word = "america"
+    elif flag_choice == brazil:
+      word = "brazil"
     elif flag_choice == argentina:
       word = "argentina"
+    elif flag_choice == colombia:
+      word = "colombia"
+    elif flag_choice == malaysia:
+      word = "malaysia"
+    elif flag_choice == pakistan:
+      word = "pakistan"
+    elif flag_choice == ecuador:
+      word = "ecuador"
+    elif flag_choice == cuba:
+      word = "cuba"
+    elif flag_choice == mexico:
+      word = "mexico"
+    elif flag_choice == spain:
+      word = "spain"
+  
       
     pygame.display.update()
     
